@@ -45,7 +45,7 @@ pipeline{
 		 sh 'cp -r /var/jenkins_home/workspace/maven-ansible-sonar-k8s@2/target .'
 			  
 		 def img = stage('Build') {
-			 docker.build("deekshithsn/devops-training:",  '.')	 } 
+			 docker.build("deekshithsn/devops-training:$Docker_tag",  '.')	 } 
                   
 		 docker.withRegistry('http://192.168.32.131:8888', 'nexus') {
 				    
