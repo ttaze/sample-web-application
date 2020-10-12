@@ -46,7 +46,7 @@ pipeline{
 			  
 		 def img = stage('Build') {
 			 sh 'docker build . -t deekshithsn/devops-training:$Docker_tag'
-			 sh ' docker tag deekshithsn/devops-training:$Docker_tag 192.168.32.131:8888/deekshithsn/devops-training:$Docker_tag'
+			 sh ' docker tag deekshithsn/devops-training:$Docker_tag 192.168.32.131:8082/deekshithsn/devops-training:$Docker_tag'
 		 }	  
                   
 		 docker.withRegistry('http://192.168.32.131:8082', 'nexus') {
