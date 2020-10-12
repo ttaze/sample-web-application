@@ -1,8 +1,7 @@
 currentBuild.displayName = "Final_Demo # "+currentBuild.number
 
  def registryProjet='deekshithsn/devops-training'
-   def IMAGE="${registryProjet}:$Docker_tag"
-
+  
    def getDockerTag(){
         def tag = sh script: 'git rev-parse HEAD', returnStdout: true
         return tag
@@ -46,7 +45,7 @@ pipeline{
 		 sh 'cp -r /var/jenkins_home/workspace/maven-ansible-sonar-k8s@2/target .'
 			  
 		 def img = stage('Build') {
-			 docker.build("$IMAGE",  '.')	 } 
+			 docker.build("deekshithsn/devops-training:",  '.')	 } 
                   
 		 docker.withRegistry('http://192.168.32.131:8888', 'nexus') {
 				    
