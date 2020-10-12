@@ -1,7 +1,7 @@
 currentBuild.displayName = "Final_Demo # "+currentBuild.number
 
  def registryProjet='deekshithsn/devops-training'
-  
+ def IMAGE="${registryProjet}:${env.BUILD_ID}"
    def getDockerTag(){
         def tag = sh script: 'git rev-parse HEAD', returnStdout: true
         return tag
@@ -45,12 +45,12 @@ pipeline{
 		 sh 'cp -r /var/jenkins_home/workspace/maven-ansible-sonar-k8s@2/target .'
 			  
 		 def img = stage('Build') {
-			sh 'docker build . -t deekshithsn/devops-training:$Docker_tag'
+			docker.build("$IMAGE",  '.')
 		 }	  
                   
 		 docker.withRegistry('http://192.168.32.131:8888', 'nexus') {
 				    
-				sh 'docker push 192.168.32.131:8888/deekshithsn/devops-training:$Docker_tag'  
+			img.push()  
 				
 		 }
                        }
@@ -59,13 +59,9 @@ pipeline{
 		 
 		stage('ansible playbook'){
 			steps{
-			 	script{
-				    sh '''final_tag=$(echo $Docker_tag | tr -d ' ')
-				     echo ${final_tag}test
-				     sed -i "s/docker_tag/$final_tag/g"  deployment.yaml
-				     '''
+			 	
 				    ansiblePlaybook become: true, installation: 'ansible', inventory: 'hosts', playbook: 'ansible.yaml'
-				}
+				
 			}
 		}
 		
