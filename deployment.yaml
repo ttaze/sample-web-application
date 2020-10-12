@@ -14,6 +14,8 @@ spec:
       containers:
       - name: devops-training
         image: 192.168.32.131:8083/deekshithsn/devops-training:docker_tag
+      imagePullSecrets:
+      - name: regcred
         command: ["/bin/sh"]
         args: ["-c","sh /usr/local/tomcat/bin/startup.sh;while true; do echo hello; sleep 10;done"]
         ports:
