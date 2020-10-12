@@ -37,13 +37,13 @@ pipeline{
               }
 
 
-                    def IMAGE="deekshithsn/devops-training:$docker_tag"
+                    
               stage('build')
                 {
               steps{
                   script{
 		 sh 'cp -r /var/jenkins_home/workspace/maven-ansible-sonar-k8s@2/target .'
-			  
+		def IMAGE="deekshithsn/devops-training:$docker_tag"	  
 		 def img = stage('Build') {
 			docker.build("$IMAGE",  '.')
 		 }	  
