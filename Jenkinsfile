@@ -37,7 +37,7 @@ pipeline{
               }
 
 
-                    def IMAGE="${registryProjet}:${docker_tag}"
+                    def IMAGE="${registryProjet}:$docker_tag"
               stage('build')
                 {
               steps{
