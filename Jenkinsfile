@@ -1,7 +1,7 @@
 currentBuild.displayName = "Final_Demo # "+currentBuild.number
 
  def registryProjet='deekshithsn/devops-training'
- def IMAGE="${registryProjet}:${env.BUILD_ID}"
+ def IMAGE="${registryProjet}:${docker_tag}"
    def getDockerTag(){
         def tag = sh script: 'git rev-parse HEAD', returnStdout: true
         return tag
