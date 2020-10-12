@@ -51,7 +51,7 @@ pipeline{
                   
 		 docker.withRegistry('http://192.168.32.131:8082', 'nexus') {
 				    
-			sh 'docker push 192.168.32.131:8888/deekshithsn/devops-training:$Docker_tag'
+			sh 'docker push 192.168.32.131:8082/deekshithsn/devops-training:$Docker_tag'
 				
 		 }
                        }
