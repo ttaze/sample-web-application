@@ -8,7 +8,7 @@
     <meta name="author" content="">
     <link rel="icon" href="../../favicon.ico">
 
-    title>Projets de Fin d'Etude</title>
+    <title>Projets de Fin d'Etude</title>
 
 
     <!-- Custom styles for this template -->
