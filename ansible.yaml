@@ -5,7 +5,7 @@
       src: deployment.yaml
       dest: /home/touj/test
   - name: delete the previous of kubernetes objects 
-    command: kubectl delete -f /root/deployment.yaml
+    command: kubectl delete -f /home/touj/test/deployment.yaml
   - name: Create a Deployment by reading the definition from a local file
     command: kubectl apply -f /home/touj/test/deployment.yaml
       
