@@ -27,7 +27,7 @@ pipeline{
             }
                   steps{
                       script{
-                      withSonarQubeEnv('sonar_server1') { 
+                      withSonarQubeEnv('sonar_server') { 
                       sh "mvn sonar:sonar"
                        }
                       
