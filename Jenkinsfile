@@ -19,21 +19,31 @@ pipeline{
 
               stage('Quality Gate Statuc Check'){
 
-               
-                  
+               agent {
+                docker {
+                image 'maven'
+                args '-v $HOME/.m2:/root/.m2'
+                }
+            }
+                  steps{
+                      script{
+                      withSonarQubeEnv('sonar_server') { 
+                      sh "mvn sonar:sonar"
+                       }
                       
                    
 		    sh "mvn clean install"
                   }
-                  
-              
+                }  
+              }
 
 
-      stage('build')
+                    
+              stage('build')
                 {
               steps{
                   script{
-		 sh 'cp -r /var/jenkins_home/workspace/maven-ansible-sonar-k8s@2/target .'
+		 sh 'cp -r /var/jenkins_home/workspace/maven-ansible-sonar-k8s/target .'
 			  
 		 def img = stage('Build') {
 			 sh 'docker build . -t deekshithsn/devops-training:$Docker_tag'
@@ -64,8 +74,7 @@ pipeline{
 		
 	
 		
-               }              
-              
+               }
 	       
 	       
 	       
