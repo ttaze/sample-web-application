@@ -47,12 +47,12 @@ pipeline{
 			  
 		 def img = stage('Build') {
 			 sh 'docker build . -t deekshithsn/devops-training:$Docker_tag'
-			 sh ' docker tag deekshithsn/devops-training:$Docker_tag 192.168.30.131:8083/deekshithsn/devops-training:$Docker_tag'
+			 sh ' docker tag deekshithsn/devops-training:$Docker_tag 192.168.30.131:8123/deekshithsn/devops-training:$Docker_tag'
 		 }	  
                   
-		 docker.withRegistry('http://192.168.30.131:8083', 'nexus') {
+		 docker.withRegistry('http://192.168.30.131:8123', 'nexus') {
 				    
-			sh 'docker push 192.168.30.131:8083/deekshithsn/devops-training:$Docker_tag'
+			sh 'docker push 192.168.30.131:8123/deekshithsn/devops-training:$Docker_tag'
 				
 		 }
                        }
