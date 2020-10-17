@@ -25,22 +25,18 @@ pipeline{
                 args '-v $HOME/.m2:/root/.m2'
                 }
             }
-                  steps{
-                      script{
-			      withSonarQubeEnv(credentialsId: 'sonar') {
-   sh "mvn sonar:sonar"
-}
+                  
                   
                       
                    
 		    sh "mvn clean install"
                   }
-                }  
-              }
+                  
+              
 
 
                     
-              stage('build')
+              stage('build-----------------------------')
                 {
               steps{
                   script{
